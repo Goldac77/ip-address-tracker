@@ -7,7 +7,7 @@ function Data(props) {
             </div>
             <div className="location">
                 <h3>LOCATION</h3>
-                {props.location}
+                {props.region},{props.country}
             </div>
             <div className="timezone">
                 <h3>TIMEZONE</h3>
