@@ -14,4 +14,8 @@ This is currently a work in progress, but in the end you should be able to:
 * react-leaflet
 
 # To run build: #
+If react-scripts dependency is not available, first add it manually with
+`npm install react-scripts --save`
+
+then run build with
 `npm start`
