@@ -5,6 +5,10 @@ This is currently a work in progress, but in the end you should be able to:
 - [ ] Search for any IP addresses or domains and see the key information and location
 - [ ] And other possible features
 
+# Updates #
+* This project is no long using ipify's Geolocation API <br>
+We will be using ipwhois which has sufficient tokens
+
 # Packages installed: #
 * axios
 * react-axios
