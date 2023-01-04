@@ -2,7 +2,7 @@ import './App.css';
 import axios from 'axios';
 import Data from './Data';
 import { useEffect, useRef, useState } from 'react';
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import { MapContainer, Marker, Popup, TileLayer, } from 'react-leaflet';
 
 function App() {
   const [formData, setFormData] = useState({
@@ -30,7 +30,13 @@ function App() {
         [event.target.name]: event.target.value
       }
     })
-  } 
+  }
+  
+  /*Change map center and view based on new lat and lng
+  from new api request*/
+  function changeCenter(){
+    //TODO...
+  }
 
   console.log(formData)
   console.log(ipAddress.current)
@@ -47,6 +53,7 @@ function App() {
   
         <form>
           <input type="text" placeholder='Enter IP Address' name='ip_address' onChange={handleChange} />
+          <button onClick={changeCenter}>></button>
         </form>
   
         <Data
@@ -58,6 +65,7 @@ function App() {
         />
   
         <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
+          
           <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
