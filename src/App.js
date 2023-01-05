@@ -9,6 +9,7 @@ function App() {
     ip_address: ""
   })
   const [apiData, setApiData] = useState(null)
+  const ipRegExp = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
 
   //Receive the client's IP Address info from ipwhois
   useEffect(() => {
@@ -26,10 +27,20 @@ function App() {
     })
   }
   
-  /*Change map center and view based on new lat and lng
-  from new api request*/
+  /*Fetch new data from api and change map view
+  It checks for a valid IP address before making a GET request
+  Doesn't change map view in it's current state*/
   function changeCenter(){
-    //TODO...
+    if(formData.ip_address == "") {
+      alert("Enter a valid IP Address")
+    } else if(!ipRegExp.test(formData.ip_address)) {
+      alert("Enter a valid IP Address")
+    } else {
+      axios.get(`http://ipwho.is/${formData.ip_address}`)
+      .then((response) => {
+        setApiData(response.data)
+      })
+    }
   }
 
   console.log(formData)
@@ -46,7 +57,7 @@ function App() {
   
         <form>
           <input type="text" placeholder='Enter IP Address' name='ip_address' onChange={handleChange} />
-          <button onClick={changeCenter}>></button>
+          <button type='button' onClick={changeCenter}>></button>
         </form>
   
         <Data
