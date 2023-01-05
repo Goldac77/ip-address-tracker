@@ -1,7 +1,7 @@
 import './App.css';
 import axios from 'axios';
 import Data from './Data';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MapContainer, Marker, Popup, TileLayer, } from 'react-leaflet';
 
 function App() {
@@ -31,7 +31,7 @@ function App() {
   It checks for a valid IP address before making a GET request
   Doesn't change map view in it's current state*/
   function changeCenter(){
-    if(formData.ip_address == "") {
+    if(formData.ip_address === "") {
       alert("Enter a valid IP Address")
     } else if(!ipRegExp.test(formData.ip_address)) {
       alert("Enter a valid IP Address")
