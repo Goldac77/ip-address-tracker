@@ -9,6 +9,7 @@ function App() {
     ip_address: ""
   })
   const [apiData, setApiData] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null)
   const ipRegExp = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
 
   //Receive the client's IP Address info from ipwhois
@@ -16,6 +17,9 @@ function App() {
     axios.get("http://ipwho.is/")
     .then((response) => {
       setApiData(response.data)
+    })
+    .catch(error => {
+      setErrorMessage(error)
     })
   }, [])
 
@@ -45,6 +49,7 @@ function App() {
 
   console.log(formData)
   console.log(apiData)
+  console.log("Error: " + errorMessage)
 
   if(apiData == null){
     return <p>Loading...</p>
